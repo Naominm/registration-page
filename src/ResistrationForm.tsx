@@ -4,7 +4,7 @@ import image from "../src/assets/signup.jpg"
 function FormData() {
   return (
     <div>
-      <Typography component="h1" variant="h5" mt={3}>
+      <Typography component="h1" variant="h4" mt={3} sx={{ mb: 3, fontWeight: 'bold' }}>
         Create an Account
       </Typography>
       <Box sx={{
@@ -27,6 +27,7 @@ function FormData() {
         }}>
 
           <TextField
+            variant="outlined"
             label="First Name"
             name="First Name"
             margin="normal"
@@ -70,7 +71,7 @@ function FormData() {
             fullWidth
             required
           />
-          <Button variant="contained" sx={{ mt: "1rem" }}>Register</Button>
+          <Button  type="submit" variant="contained" sx={{ mt: "1rem", padding:1.5,width:"18rem", fontWeight:"bold"}}>Register</Button>
         </Paper>
         <Box
           component="img"
