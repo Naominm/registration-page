@@ -58,7 +58,7 @@ function FormData() {
           }}
         >
           <Paper
-            elevation={5}
+            elevation={1}
             sx={{
               mt: 1,
               width: { xs: "90%", sm: "70%", md: "35%" },
