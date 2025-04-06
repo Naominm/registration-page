@@ -13,11 +13,23 @@ const theme = createTheme({
 
 
 function FormData() {
-
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
   const notify = () => toast("Passwords do not match.");
   const success = () => toast("Account Created Successfully");
+
+  const [errors, setErrors] = useState({
+    firstName: false,
+    lastName: false,
+    email: false,
+    password: false,
+    confirmPassword: false,
+  });
+  
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,7 +39,10 @@ function FormData() {
     return;
   }
   success()
-  
+
+  setFirstName("");
+  setLastName("");
+  setEmail("");
   setPassword("");
   setConfirmPassword("");
   }
@@ -61,11 +76,12 @@ function FormData() {
           <form onSubmit={handleSubmit}>
 
           <TextField
-            variant="outlined"
             label="First Name"
             name="First Name"
             margin="normal"
             size="small"
+            value={firstName}
+            onChange={(e) => setFirstName(e.target.value)}
             fullWidth
             required
           />
@@ -74,6 +90,8 @@ function FormData() {
             name="last Name"
             margin="normal"
             size="small"
+            value={lastName}
+            onChange={(e) => setLastName(e.target.value)}
             fullWidth
             required
           />
@@ -84,6 +102,8 @@ function FormData() {
             margin="normal"
             type="email"
             size="small"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             fullWidth
             required
           />
