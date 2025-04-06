@@ -1,13 +1,13 @@
-import FormData from './ResistrationForm'
+import FormData from "./ResistrationForm";
 
-import './App.css'
+import "./App.css";
 
 function App() {
- return(
-<div>
-  <FormData/>
-</div>
- )
+  return (
+    <div>
+      <FormData />
+    </div>
+  );
 }
 
-export default App
+export default App;
