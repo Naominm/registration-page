@@ -1,5 +1,7 @@
-import { Box, Typography, TextField, Paper, Button } from "@mui/material"
+import { useState } from "react";
+import { Box, Typography, TextField, Paper, Button} from "@mui/material"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { ToastContainer, toast } from 'react-toastify';
 import image from "../src/assets/signup.jpg"
 
 const theme = createTheme({
@@ -8,10 +10,31 @@ const theme = createTheme({
   },
 });
 
+
+
 function FormData() {
+
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const notify = () => toast("Passwords do not match.");
+  const success = () => toast("Account Created Successfully");
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+  if (password !== confirmPassword) {
+    notify();
+    return;
+  }
+  success()
+  
+  setPassword("");
+  setConfirmPassword("");
+  }
   return (
     <div>
         <ThemeProvider theme={theme}>
+        <ToastContainer />
       <Typography component="h1" variant="h4" mt={1} sx={{ mb: 3, fontWeight: 'bold' }}>
         Create an Account
       </Typography>
@@ -35,6 +58,7 @@ function FormData() {
           borderRadius:"1rem",
 
         }}>
+          <form onSubmit={handleSubmit}>
 
           <TextField
             variant="outlined"
@@ -68,6 +92,8 @@ function FormData() {
             name="Password"
             margin="normal"
             type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             size="small"
             fullWidth
             required
@@ -77,12 +103,18 @@ function FormData() {
             name="Confirm Password"
             margin="normal"
             type="password"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
             size="small"
             fullWidth
             required
           />
-          <Button  type="submit" variant="contained" sx={{ mt: "1rem", padding:1.5,width:"100%", fontWeight:"bold", borderRadius:"10px"}}>Register</Button>
+          
+          <Button type="submit" variant="contained" sx={{ mt: "1rem", padding:1.5,width:"100%", fontWeight:"bold", borderRadius:"10px"}}>Register</Button>
+          </form>
         </Paper>
+        
+       
         <Box
           component="img"
           src={image}
@@ -91,8 +123,10 @@ function FormData() {
             height: "430px",
             borderRadius: 2,
           }} />
+       
       </Box>
       </ThemeProvider>
+      
     </div>
   )
 }
