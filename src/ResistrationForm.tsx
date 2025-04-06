@@ -1,10 +1,18 @@
 import { Box, Typography, TextField, Paper, Button } from "@mui/material"
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import image from "../src/assets/signup.jpg"
+
+const theme = createTheme({
+  typography: {
+    fontFamily: '"Open Sans", sans-serif;'
+  },
+});
 
 function FormData() {
   return (
     <div>
-      <Typography component="h1" variant="h4" mt={3} sx={{ mb: 3, fontWeight: 'bold' }}>
+        <ThemeProvider theme={theme}>
+      <Typography component="h1" variant="h4" mt={1} sx={{ mb: 3, fontWeight: 'bold' }}>
         Create an Account
       </Typography>
       <Box sx={{
@@ -13,7 +21,7 @@ function FormData() {
         alignItems: 'center',
         justifyContent:'center',
         gap: "2rem",
-      flexDirection: { xs: "column", md: "row" }
+      flexDirection: { xs: "column", md: "row" },
       }}>
 
 
@@ -23,7 +31,8 @@ function FormData() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          padding: "2rem"
+          padding: "2rem",
+          borderRadius:"1rem",
 
         }}>
 
@@ -72,19 +81,18 @@ function FormData() {
             fullWidth
             required
           />
-          <Button  type="submit" variant="contained" sx={{ mt: "1rem", padding:1.5,width:"100%", fontWeight:"bold"}}>Register</Button>
+          <Button  type="submit" variant="contained" sx={{ mt: "1rem", padding:1.5,width:"100%", fontWeight:"bold", borderRadius:"10px"}}>Register</Button>
         </Paper>
         <Box
           component="img"
           src={image}
           sx={{
             width: { xs: "100%", md: "40%" },
-            height: "400px",
+            height: "430px",
             borderRadius: 2,
-            boxShadow: 1
           }} />
       </Box>
-
+      </ThemeProvider>
     </div>
   )
 }
