@@ -12,13 +12,14 @@ function FormData() {
         display: 'flex',
         alignItems: 'center',
         justifyContent:'center',
-        gap: "2rem"
+        gap: "2rem",
+      flexDirection: { xs: "column", md: "row" }
       }}>
 
 
         <Paper elevation={5} sx={{
           mt: 1,
-          width: "30%",
+          width: { xs: "90%", sm: "70%", md: "35%" },
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -71,13 +72,13 @@ function FormData() {
             fullWidth
             required
           />
-          <Button  type="submit" variant="contained" sx={{ mt: "1rem", padding:1.5,width:"18rem", fontWeight:"bold"}}>Register</Button>
+          <Button  type="submit" variant="contained" sx={{ mt: "1rem", padding:1.5,width:"100%", fontWeight:"bold"}}>Register</Button>
         </Paper>
         <Box
           component="img"
           src={image}
           sx={{
-            width: "40%",
+            width: { xs: "100%", md: "40%" },
             height: "400px",
             borderRadius: 2,
             boxShadow: 1
