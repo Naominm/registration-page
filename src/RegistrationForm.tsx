@@ -1,5 +1,16 @@
 import { useState } from "react";
-import { Box, Typography, TextField, Paper, Button } from "@mui/material";
+import {
+  Box,
+  Typography,
+  TextField,
+  Paper,
+  Button,
+  FormControl,
+  InputAdornment,
+} from "@mui/material";
+import AccountCircle from "@mui/icons-material/AccountCircle";
+import EmailIcon from "@mui/icons-material/Email";
+import EnhancedEncryptionIcon from "@mui/icons-material/EnhancedEncryption";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ToastContainer, toast } from "react-toastify";
 import image from "../src/assets/signup.jpg";
@@ -8,11 +19,11 @@ const theme = createTheme({
   typography: {
     fontFamily: '"Open Sans", sans-serif;',
   },
+  
 });
 
 function FormData() {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [Name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -29,8 +40,7 @@ function FormData() {
     }
     success();
 
-    setFirstName("");
-    setLastName("");
+    setName("");
     setEmail("");
     setPassword("");
     setConfirmPassword("");
@@ -47,6 +57,7 @@ function FormData() {
         >
           Create an Account
         </Typography>
+
         <Box
           sx={{
             marginTop: 6,
@@ -69,61 +80,89 @@ function FormData() {
               borderRadius: "1rem",
             }}
           >
-            <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit}>
+            <FormControl
+              variant="standard"
+              sx={{ display: "flex", alignItems: "center",justifyContent:"center", gap: "1rem"}}
+            >
               <TextField
-                label="First Name"
-                name="First Name"
-                margin="normal"
-                size="small"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
+                id="Your Name"
+                label="Name"
+                value={Name}
                 fullWidth
                 required
-              />
-              <TextField
-                label="last Name"
-                name="last Name"
-                margin="normal"
-                size="small"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                fullWidth
-                required
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <AccountCircle />
+                      </InputAdornment>
+                    ),
+                  },
+                }}
+                variant="standard"
               />
 
               <TextField
+                id="Email"
                 label="Email Address"
-                name="Email Address"
-                margin="normal"
                 type="email"
-                size="small"
+                required
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
                 fullWidth
-                required
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <EmailIcon />
+                      </InputAdornment>
+                    ),
+                  },
+                }}
+                variant="standard"
               />
-              <TextField
-                label="Password"
-                name="Password"
-                margin="normal"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                size="small"
-                fullWidth
-                required
-              />
-              <TextField
-                label="Confirm Password"
-                name="Confirm Password"
-                margin="normal"
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                size="small"
-                fullWidth
-                required
-              />
+
+              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                <EnhancedEncryptionIcon
+                  sx={{ color: "action.active", mr: 1, my: 0.5 }}
+                />
+                <TextField
+                  id="password"
+                  label="Password"
+                  variant="standard"
+                  type="password"
+                  value={password}
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                  fullWidth
+                  required
+                />
+              </Box>
+
+              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                <EnhancedEncryptionIcon
+                  sx={{ color: "action.active", mr: 1, my: 0.5 }}
+                />
+                <TextField
+                  id="confirm-password"
+                  label="Confirm Password"
+                  variant="standard"
+                  type="password"
+                  fullWidth
+                  value={confirmPassword}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                  }}
+                  required
+                />
+              </Box>
 
               <Button
                 type="submit"
@@ -138,6 +177,7 @@ function FormData() {
               >
                 Register
               </Button>
+            </FormControl>
             </form>
           </Paper>
 
