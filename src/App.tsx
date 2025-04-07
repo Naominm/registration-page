@@ -1,5 +1,4 @@
-import FormData from "./ResistrationForm";
-
+import FormData from "./RegistrationForm";
 import "./App.css";
 
 function App() {
